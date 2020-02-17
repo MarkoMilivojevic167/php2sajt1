@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /Images/
+Sitemap: http://marco-restaurant.epizy.com/sitemap.xml
