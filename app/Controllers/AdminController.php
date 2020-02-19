@@ -95,7 +95,7 @@ class AdminController extends Controller{
                     $admin->crudActivity('products','Insert');
                     }catch(PDOException $e) {
                         $this->errorDB($e->getMessage());
-                        $this->redirect("404");
+                        $this->redirect("404");;
                     }
                     
                 }
