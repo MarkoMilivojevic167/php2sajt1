@@ -36,12 +36,11 @@ class ReservationController extends Controller{
             }else{
 
                 $result=$reservation->insertReservation($indication,$dataTime,$idUser,$time,$people,);
-                $this->code(200);
                 $this->redirect("user");
             }
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
         }
     }
