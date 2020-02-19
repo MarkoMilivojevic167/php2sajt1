@@ -19,11 +19,9 @@ class ProductsController extends Controller{
             $this->data['food']=$food;
             $this->data['drink']=$drink;
             $this->data['dessert']=$dessert;
-            $this->loadView("products",$this->data);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
     }
 
@@ -37,10 +35,9 @@ class ProductsController extends Controller{
             $this->data['drink']=$drink;
             $this->data['dessert']=$dessert;
             $this->json([$this->data]);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
         
     }
@@ -52,10 +49,9 @@ class ProductsController extends Controller{
             $oneProduct=$products->oneProduct($id);
             $this->data['oneProduct']=$oneProduct;
             $this->loadView("oneProduct",$this->data);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
         }else{
             $this->redirect('products');
@@ -75,10 +71,9 @@ class ProductsController extends Controller{
                 $this->data['drink']=$drink;
                 $this->data['dessert']=$dessert;
                 $this->json([$this->data]);
-                $this->code(200);
             }catch(PDOException $e){
                 $this->errorDB($e->getMessage());
-                $this->code(404);
+                $this->redirect("404");
             }
         
         }
