@@ -93,10 +93,9 @@ class AdminController extends Controller{
                     $insertImage=$admin->insertImages($getLastId,$pathNewImage,$pathOriginalImages,$alt);
 
                     $admin->crudActivity('products','Insert');
-                    $this->code(200);
                     }catch(PDOException $e) {
                         $this->errorDB($e->getMessage());
-                        $this->code(404);
+                        $this->redirect("404");
                     }
                     
                 }
@@ -125,14 +124,13 @@ class AdminController extends Controller{
             $this->data['products']=$product;
             $this->data['category']=$category;
             $this->loadView("administrator",$this->data);
-            $this->code(200);
             
             }else{
                 $this->redirect("home");
             }
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
     }
 
@@ -142,10 +140,9 @@ class AdminController extends Controller{
             $users=$admin->getUsers();
             $this->data['users']=$users;
             $this->json($this->data);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
     }
 
@@ -156,10 +153,9 @@ class AdminController extends Controller{
                 $admin= new Admin($this->db);
                 $user=$admin->deleteUsers($id);
                 $admin->crudActivity('users','Delete');
-                $this->code(200);
             }catch(PDOException $e){
                 $this->errorDB($e->getMessage());
-                $this->code(404);
+                $this->redirect("404");
             }
         }
     }
@@ -170,10 +166,9 @@ class AdminController extends Controller{
             $product=$admin->getProduct();
             $this->data['product']=$product;
             $this->json($this->data);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
     }
 
@@ -185,10 +180,9 @@ class AdminController extends Controller{
                 $images=$admin->deleteImages($id);
                 $product=$admin->deleteProduct($id);
                 $admin->crudActivity('products','Delete');
-                $this->code(200);
             }catch(PDOException $e){
                 $this->errorDB($e->getMessage());
-                $this->code(404);
+                $this->redirect("404");
             }
         }
     }
@@ -200,10 +194,9 @@ class AdminController extends Controller{
             $contact=$admin->getContact();
             $this->data['contact']=$contact;
             $this->json($this->data);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
     }
 
@@ -214,10 +207,9 @@ class AdminController extends Controller{
                 $id=$_POST['id'];
                 $contact=$admin->deleteContact($id);
                 $admin->crudActivity('contact','Delete');
-                $this->code(200);
             }catch(PDOException $e){
                 $this->errorDB($e->getMessage());
-                $this->code(404);
+                $this->redirect("404");
             }
         }
     }
@@ -228,10 +220,9 @@ class AdminController extends Controller{
             $reservation=$admin->getReservation();
             $this->data['reservation']=$reservation;
             $this->json($this->data);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
     }
 
@@ -242,10 +233,9 @@ class AdminController extends Controller{
                 $id=$_POST['id'];
                 $reservation=$admin->deleteReservation($id);
                 $admin->crudActivity('reservation','Delete');
-                $this->code(200);
             }catch(PDOException $e){
                 $this->errorDB($e->getMessage());
-                $this->code(404);
+                $this->redirect("404");
             }
         }
     }
@@ -259,10 +249,9 @@ class AdminController extends Controller{
             $this->data['userLevel']=$userLevel;
             $this->data['oneUser']=$user;
             $this->loadView("editUser",$this->data);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
     }
 
@@ -278,11 +267,10 @@ class AdminController extends Controller{
             try{
                 $rez=$admin->updateUser($name,$lastName,$email,$level,$id);
                 $admin->crudActivity('users','Update');
-                $this->code(200);
                 $this->redirect("administrator");
             }catch(PDOException $e){
                 $this->errorDB($e->getMessage());
-                $this->code(404);
+                $this->redirect("404");
             }
         }
     }
@@ -295,10 +283,9 @@ class AdminController extends Controller{
             $this->data['categoryProduct']=$category;
             $this->data['editProduct']=$produdct;
             $this->loadView("editProduct",$this->data);
-            $this->code(200);
         }catch(PDOException $e){
             $this->errorDB($e->getMessage());
-            $this->code(404);
+            $this->redirect("404");
         }
     }
 
@@ -314,12 +301,11 @@ class AdminController extends Controller{
             try{
                 $rez=$admin->updateProduct($name,$text,$price,$category,$id);
                 $admin->crudActivity('products','Update');
-                $this->code(200);
                 $this->redirect("administrator");
 
             }catch(PDOException $e){
                 $this->errorDB($e->getMessage());
-                $this->code(404);
+                $this->redirect("404");
             }
         }
     }
