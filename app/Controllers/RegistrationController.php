@@ -48,11 +48,10 @@ class RegistrationController extends Controller{
 
                     $user=$users->insert($name,$lastName,$email,$password,$level=1);
                     $results=$users->getUser($email,$password);
-                    
-                    $this->code(200);
+
                 }catch(PDOException $e){
                     $this->errorDB($e->getMessage());
-                    $this->code(404);
+                    $this->redirect("404");
                 }
 
                 if($results){
