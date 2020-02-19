@@ -43,11 +43,10 @@ class ContactController extends Controller{
                 try{
 
                     $rez=$contact->insertContact($name,$email,$phone,$text);
-                    $this->code(200);
                     $this->redirect("contact");
                 }catch(PDOException $e){
                     $this->errorDB($e->getMessage());
-                    $this->code(404);
+                    $this->redirect("404");
                 }
 
             }
