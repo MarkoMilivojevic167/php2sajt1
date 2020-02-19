@@ -24,10 +24,9 @@ class LoginController extends Controller{
                 
                 try{
                     $user=$users->getUser($email,$password); 
-                    $this->code(200);
                 }catch(PDOException $e){
                     $this->errorDB($e->getMessage());
-                    $this->code(404);
+                    $this->redirect("404");
                 }
 
                 if($user){
