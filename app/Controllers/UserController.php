@@ -26,10 +26,9 @@ class UserController extends Controller{
                     $this->data['userpage']=$oneUser;
                     $this->loadView("user",$this->data);
                     $this->userLevelUser();
-                    $this->code(200);
                 }catch(PDOException $e){
                     $this->errorDB($e->getMessage());
-                    $this->code(404);
+                    $this->redirect("404");
                 }
             }else{
                 $this->redirect("home");
